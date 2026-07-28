@@ -1,6 +1,6 @@
-# MAR SUM Offline (PWA)
+# MAR KMBOffline (PWA)
 
-Companion PWA offline untuk **Mechanic Activity Report PT SUM (ver 2)**.
+Companion PWA offline untuk **Mechanic Activity Report PT KMB(ver 2)**.
 Direplikasi & diadaptasi dari `mar-sum-offline`, disesuaikan untuk terhubung langsung dengan backend Google Apps Script `D:\KMB`.
 
 - **Script ID Backend:** `17sBKK-x3qXzL7tRlejsXE1kQXGwF-CQtCoCdhA4ZWE4_E2NSq0ZUwtqo`
