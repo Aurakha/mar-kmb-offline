@@ -1,4 +1,4 @@
-var CACHE = 'mar-sum-v9';
+var CACHE = 'mar-kmb-v10';
 var ASSETS = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png', './foto.png'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(ASSETS); }));
@@ -20,7 +20,7 @@ self.addEventListener('activate', function (e) {
 var API_URL = 'https://script.google.com/macros/s/AKfycbwlwlQvOGVF6FdKkYRNlbgdJCets5L-0AfufMB4_79_HzvoQkeE9aZAqkKZiXCZHXnG6Q/exec';
 function swDb() {
   return new Promise(function (res, rej) {
-    var r = indexedDB.open('mar_sum_v1', 1);
+    var r = indexedDB.open('mar_kmb_v1', 1);
     r.onsuccess = function () { res(r.result); };
     r.onerror = function () { rej(r.error); };
   });
@@ -35,7 +35,7 @@ function swReq(d, store, mode, fn) {
 function swNotify(body) {
   try {
     if (self.Notification && Notification.permission === 'granted') {
-      return self.registration.showNotification('MAR SUM', { body: body, icon: './icon-192.png', badge: './icon-192.png', tag: 'mar-' + body.slice(0, 16) });
+      return self.registration.showNotification('MAR KMB', { body: body, icon: './icon-192.png', badge: './icon-192.png', tag: 'mar-' + body.slice(0, 16) });
     }
   } catch (e) { }
   return Promise.resolve();
@@ -143,7 +143,7 @@ self.addEventListener('push', function (e) {
   e.waitUntil(
     swFlushOutbox().catch(function () { })
       .then(function () { return swCheckPending(); })
-      .then(function (n) { if (!n) return swNotify('🔄 Data MAR KMBdiperbarui'); })
+      .then(function (n) { if (!n) return swNotify('🔄 Data MAR KMB diperbarui'); })
   );
 });
 self.addEventListener('sync', function (e) {

@@ -1,13 +1,10 @@
 /* ============================================================
-   MAR KMBOffline — Mekanik submit + Create + Approval (incl. Override)
+   MAR KMB Offline — Mekanik submit + Create + Approval (incl. Override)
    Prinsip: CACHE → ANTRE → SINKRON. Server selalu benar.
-   Adaptasi SUM: tanpa section/scope, tanpa job katalog, part_type wajib,
-   MTBF mati, foreman create-only, override L1/L2 (parity web).
-   Backend: Apps Script 17sBKK-x3qXzL7tRlejsXE1kQXGwF-CQtCoCdhA4ZWE4_E2NSq0ZUwtqo
    ============================================================ */
 
 var CONFIG = { API_URL: 'https://script.google.com/macros/s/AKfycbwlwlQvOGVF6FdKkYRNlbgdJCets5L-0AfufMB4_79_HzvoQkeE9aZAqkKZiXCZHXnG6Q/exec' };
-var APP_VERSION = 'sum-v9'; // samakan dgn CACHE 'mar-sum-v9' di sw.js tiap rilis
+var APP_VERSION = 'kmb-v10'; // samakan dgn CACHE 'mar-kmb-v10' di sw.js tiap rilis
 var S = { token: null, me: null, role: null, wos: [], refs: null, refsAt: null, pending: [], active: [], approved: [], outbox: [], lastSync: null, syncing: false, tab: 'wos', appSub: 'pending', showOutbox: false, timerStates: {} };
 // Referensi kecil (komponen/unit/mekanik) — tarik ulang maks 1x/12 jam.
 var REFS_TTL_MS = 12 * 60 * 60 * 1000;
@@ -167,7 +164,7 @@ function openSubmitWithTimer(woId) {
 /* ── IndexedDB ── */
 function openDb() {
   return new Promise(function (res, rej) {
-    var r = indexedDB.open('mar_sum_v1', 1);
+    var r = indexedDB.open('mar_kmb_v1', 1);
     r.onupgradeneeded = function (e) {
       var d = e.target.result;
       if (!d.objectStoreNames.contains('kv')) d.createObjectStore('kv');
@@ -211,7 +208,7 @@ window.addEventListener('beforeinstallprompt', function (e) {
 window.addEventListener('appinstalled', function () {
   _installPrompt = null;
   var b = document.getElementById('installBtn'); if (b) b.style.display = 'none';
-  toast('✅ Terinstal! Buka dari ikon MAR KMBdi layar utama.');
+  toast('✅ Terinstal! Buka dari ikon MAR KMB di layar utama.');
 });
 function doInstall() {
   if (IS_IOS) { showModal('iosModal'); return; }
@@ -227,7 +224,7 @@ function requestNotifPermission() {
 function notifyLocal(body) {
   try {
     if ('Notification' in window && Notification.permission === 'granted' && 'serviceWorker' in navigator) {
-      navigator.serviceWorker.ready.then(function (reg) { return reg.showNotification('MAR SUM', { body: body, icon: './icon-192.png', badge: './icon-192.png', tag: 'mar-info' }); }).catch(function () { });
+      navigator.serviceWorker.ready.then(function (reg) { return reg.showNotification('MAR KMB', { body: body, icon: './icon-192.png', badge: './icon-192.png', tag: 'mar-info' }); }).catch(function () { });
     }
   } catch (e) { }
 }

@@ -1,6 +1,6 @@
 {
-  "name": "MAR KMB— Laporan Kerja Offline",
-  "short_name": "MAR SUM",
+  "name": "MAR KMB — Laporan Kerja Offline",
+  "short_name": "MAR KMB",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#F8FAFC",
