@@ -1221,7 +1221,7 @@ openDb().then(function () {
   return refreshOutbox();
 }).then(function () {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js');
+    navigator.serviceWorker.register('./sw.js').then(function (reg) { reg.update(); }).catch(function () { });
     var _swReloaded = false;
     navigator.serviceWorker.addEventListener('controllerchange', function () {
       if (_swReloaded) return; _swReloaded = true; window.location.reload();
