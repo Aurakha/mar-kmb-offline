@@ -1,5 +1,5 @@
-var CACHE = 'mar-kmb-v12';
-var ASSETS = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png', './foto.png'];
+var CACHE = 'mar-kmb-v13';
+var ASSETS = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png', './foto2.jpg'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(ASSETS); }));
   self.skipWaiting();
